@@ -98,7 +98,7 @@ class VerifyButton(discord.ui.View):
 
 # ---------------- スラッシュコマンド ---------------- #
 @bot.tree.command(name="verify", description="...")
-@app_commands.guilds(discord.Object(id=GUILD_ID))  # ギルド限定
+@app_commands.guilds(discord.Object(id=GUILD_ID))
 async def verify(interaction: discord.Interaction):
     embed = discord.Embed(
         title="",
@@ -106,9 +106,13 @@ async def verify(interaction: discord.Interaction):
         color=0x00ffcc
     )
     embed.set_image(url="https://i.pinimg.com/originals/78/41/b9/7841b9967f7bb4cd5ef200f24ee04adb.gif")
+    
     view = VerifyButton(interaction.user.id)
-    await interaction.response.send_message(embed=embed, view=view)
-
+    
+    await interaction.response.send_message(
+        embed=embed,
+        view=view
+    )
 @bot.tree.command(name="r")
 async def rules(interaction: discord.Interaction):
     embed = discord.Embed(
